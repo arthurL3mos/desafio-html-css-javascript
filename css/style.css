@@ -305,6 +305,13 @@ body {
         width: 70%;
     }
 
+    #search-button {
+        border: none;
+        outline: none;
+        background: none; 
+        cursor: pointer;
+    }
+
     /* Login */
     #person-icon {
         color: #005CFF;

@@ -40,10 +40,10 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="position-relative" id="search-box">
-                            <input type="text" class="form-control search-box"
-                                placeholder="Digite aqui o que você procura">
-                            <i class="material-icons search-icon">search</i>
+                            <input type="text" class="form-control search-box" id="search-input" placeholder="Digite aqui o que você procura">
+                            <button id="search-button" class="material-icons search-icon">search</button>
                         </div>
+                        <span id="search-result" style="margin-top: 10px; font-weight: bold;"></span>
                     </div>
                     <div class="col-2 flex">
                         <div class="user-info">
@@ -890,36 +890,15 @@
 
 
 <script>
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    const carouselItems = document.querySelector('.carousel-items');
-    const cards = document.querySelectorAll('.card');
 
-    let currentIndex = 0; // Índice do primeiro item visível
-    const itemsPerPage = Math.floor(carouselItems.offsetWidth / cards[0].offsetWidth); // Quantos itens cabem na tela
-
-    function updateCarousel() {
-        const offset = -currentIndex * cards[0].offsetWidth; // Calcula o deslocamento
-        carouselItems.style.transform = `translateX(${offset}px)`; // Move os itens
-    }
-
-    prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarousel();
+    document.getElementById('search-button').addEventListener('click', function () {
+        const searchInput = document.getElementById('search-input').value;
+        const searchResult = document.getElementById('search-result');
+        if (searchInput.trim() !== '') {
+            searchResult.textContent = `Você buscou por: '${searchInput}'`;
+        } else {
+            searchResult.textContent = 'Por favor, digite algo para buscar.';
         }
-    });
-
-    nextBtn.addEventListener('click', () => {
-        if (currentIndex < cards.length - itemsPerPage) {
-            currentIndex++;
-            updateCarousel();
-        }
-    });
-
-    // Atualiza o carrossel ao redimensionar a janela
-    window.addEventListener('resize', () => {
-        updateCarousel();
     });
 </script>
 
